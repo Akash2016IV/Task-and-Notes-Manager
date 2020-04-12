@@ -16,7 +16,7 @@ const Tasks = db.define('Task', {
         allowNull: false
     },
     due: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false
     },
     description: {

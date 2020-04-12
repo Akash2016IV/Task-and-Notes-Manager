@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task notes Manager</title>
+</head>
+
+<body>
+    <h1>Task Notes Manager</h1>
+    <div class="container">
+        <div class="form">
+            <label>Title* :</label>
+            <input type="text" id="title" required placeholder="Title"><br><br>
+
+            <label>Description :</label>
+            <input type="text" id="description" placeholder="Description"><br><br>
+
+            <label>Due Date* :</label>
+            <input type="date" id="dueDate" required placeholder="Due Date"><br><br>
+
+            <label>Status :</label>
+            <select id="status">
+                <option value="incomplete" selected>Incomplete</option>
+                <option value="complete">Complete</option>
+            </select><br><br>
+
+            <label>Priority :</label>
+            <select id="priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high" >High</option>
+            </select><br><br>
+
+            <input type="submit" value="Submit" id="submit">
+        </div>
+        <ul id="list">
+        </ul>
+    </div>
+
+    <script src="task_script.js"></script>
+</body>
+
+</html>
