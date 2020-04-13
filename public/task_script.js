@@ -66,15 +66,22 @@ function addTaskToPage(task) {
                 <input class="btn-block" type="button" value="Update" id="update"onclick = "updateTaskDetail(${task.taskId})" >
             </div>
         </div>
+        <div id="${task.taskId}notesList">
         </div>
         <br>`
     )
 }
 
 async function getAllTasksNotes(taskId) {
+    let notesList = document.getElementById(`${taskId}notesList`)
+    notesList.innerHTML = ''
     const resp = await fetch(`/tasks/${taskId}/notes`, { method: 'GET' })
     await resp.json().then(taskData => {
-       console.log(taskData)
+        taskData.All_Notes.forEach(note =>{
+            let data = document.createElement('li')
+            data.innerText =note.text
+            notesList.appendChild(data)
+        })
     })
 }
 
