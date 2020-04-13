@@ -75,7 +75,7 @@ route.get('/:id/notes', async (req, res) => {
         include: [{
             model: Notes,
             as: 'All_Notes',
-            attributes: ['nodeId', 'text']
+            attributes: ['noteId', 'text']
         }]
     })
 

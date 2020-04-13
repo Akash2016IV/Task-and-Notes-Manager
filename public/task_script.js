@@ -4,12 +4,12 @@ let dueDate = document.getElementById('dueDate')
 let status = document.getElementById('status')
 let priority = document.getElementById('priority')
 let ul = document.getElementById('list')
-let li=''
+let li = ''
 
 let submit = document.getElementById('submit');
-submit.addEventListener('click',addTask);
+submit.addEventListener('click', addTask);
 
-window.onload = function(){
+window.onload = function () {
     dueDateSetter()
     getAllTasks()
 }
@@ -18,57 +18,84 @@ async function getAllTasks() {
     let taskList = $('#taskList')
     taskList.empty()
     const resp = await fetch('/tasks', { method: 'GET' })
-    await resp.json().then(taskData=>{
+    await resp.json().then(taskData => {
         taskData.forEach(element => {
             taskList.append(addTaskToPage(element))
         })
-    }) 
+    })
 }
 
-function addTask(){
+function addTask() {
     let statusTask = false
     console.log(title.value, description.value, dueDate.value, status.value, priority.value)
-    if(status.value === 'complete'){
+    if (status.value === 'complete') {
         statusTask = true
     }
     addNewTaskJsonDB(title.value, dueDate.value, description.value, statusTask, priority.value)
     getAllTasks()
-    title.value=''
+    title.value = ''
     dueDateSetter()
-    description.value=''
-    status.value='incomplete'
-    priority.value='medium'
+    description.value = ''
+    status.value = 'incomplete'
+    priority.value = 'medium'
 }
 
 async function addNewTaskJsonDB(title, due, description, status, priority) {
     const resp = await fetch('/tasks', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ title, due, description, status, priority })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, due, description, status, priority })
     })
-  }
+}
 
-  function addTaskToPage(task){
-      let status = 'incomplete'
-      if(task.status === true){
-          status = 'complete'
-      }
-      return $(`      
-      <div class="row border">
+function addTaskToPage(task) {
+    let status = 'incomplete'
+    if (task.status === true) {
+        status = 'complete'
+    }
+    return $(`      
+      <div class="row border" id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
             <div class="col-sm border-right"> ${task.title}</div>
             <div class="col-sm border-right">${task.description}</div>
             <div class="col-sm border-right">${task.due}</div>
             <div class="col-sm border-right">${status}</div>
             <div class="col-sm border-right">${task.priority}</div>
             <div class="col-sm">
-                <input class="btn-block" type="button" value="Update" id="update">
+                <input class="btn-block" type="button" value="Update" id="update"onclick = "updateTaskDetail(${task.taskId})" >
             </div>
         </div>
-        </div>`
-        )
-  }
+        </div>
+        <br>`
+    )
+}
+
+async function getAllTasksNotes(taskId) {
+    const resp = await fetch(`/tasks/${taskId}/notes`, { method: 'GET' })
+    await resp.json().then(taskData => {
+       console.log(taskData)
+    })
+}
+
+function updateTaskDetail(taskId){
+    getTaskWithId(taskId)
+}
+
+async function getTaskWithId(taskId) {
+    const resp = await fetch(`/tasks/${taskId}`, { method: 'GET' })
+    await resp.json().then(taskData => {
+       console.log(taskData)
+    })
+}
+
+
+
+function dueDateSetter() {
+    const today = new Date()
+    today.setDate(today.getDate() + 1)
+    dueDate.value = today.toISOString().split('T')[0]
+}
 
 //   function addTaskToPage(element){
 //     let textNode = document.createTextNode(element.title)
@@ -87,9 +114,3 @@ async function addNewTaskJsonDB(title, due, description, status, priority) {
 //         //       li.className='visual'
 //         //     },2)
 // }
-
-function dueDateSetter(){
-    const today = new Date()
-    today.setDate(today.getDate()+1)
-    dueDate.value = today.toISOString().split('T')[0]
-}
