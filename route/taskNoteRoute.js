@@ -46,8 +46,6 @@ route.patch('/:id', async (req, res) => {
         })
     }
     Tasks.update({
-        title: req.body.title,
-        description: req.body.description,
         due: req.body.due,
         status: req.body.status,
         priority: req.body.priority

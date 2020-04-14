@@ -3,11 +3,9 @@ let description = document.getElementById('description')
 let dueDate = document.getElementById('dueDate')
 let status = document.getElementById('status')
 let priority = document.getElementById('priority')
-let ul = document.getElementById('list')
-let li = ''
 
-let submit = document.getElementById('submit');
-submit.addEventListener('click', addTask);
+let submit = document.getElementById('submit')
+submit.addEventListener('click', addTask)
 
 window.onload = function () {
     dueDateSetter()
@@ -55,7 +53,8 @@ function addTaskToPage(task) {
     if (task.status === true) {
         status = 'complete'
     }
-    return $(`      
+    return $(`
+    <div>      
       <div class="row border" id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
             <div class="col-sm border-right"> ${task.title}</div>
             <div class="col-sm border-right">${task.description}</div>
@@ -63,7 +62,7 @@ function addTaskToPage(task) {
             <div class="col-sm border-right">${status}</div>
             <div class="col-sm border-right">${task.priority}</div>
             <div class="col-sm">
-                <input class="btn-block" type="button" value="Update" id="update"onclick = "updateTaskDetail(${task.taskId})" >
+                <input class="btn-block" type="button" value="Update" id="update" onclick = "updateTaskDetail(${task.taskId})" >
             </div>
         </div>
         <div id="${task.taskId}notesList">
@@ -115,14 +114,17 @@ async function addNewNoteToTaskDb(taskId,noteData) {
 }
 
 function updateTaskDetail(taskId){
-    getTaskWithId(taskId)
+    getTaskWithId(taskId).then((task)=>{
+        sessionStorage.setItem('task',JSON.stringify(task))
+        location.replace("taskUpdate.html")
+    })
+   
 }
 
 async function getTaskWithId(taskId) {
     const resp = await fetch(`/tasks/${taskId}`, { method: 'GET' })
-    await resp.json().then(taskData => {
-       console.log(taskData)
-    })
+    const task = await resp.json()
+    return task
 }
 
 function dueDateSetter() {
@@ -130,21 +132,3 @@ function dueDateSetter() {
     today.setDate(today.getDate() + 1)
     dueDate.value = today.toISOString().split('T')[0]
 }
-
-//   function addTaskToPage(element){
-//     let textNode = document.createTextNode(element.title)
-//           li = document.createElement('li')
-//           let checkbox = document.createElement('input')
-//           checkbox.type='checkbox'
-//           checkbox.setAttribute('id','check')
-//           let label = document.createElement('label')
-//           label.setAttribute('for','taskItem')
-//           ul.appendChild(label)
-//           li.appendChild(checkbox)
-//           label.appendChild(textNode)
-//           li.appendChild(label)
-//           ul.insertBefore(li,ul.childNodes[0])
-//         //   setTimeout(()=>{
-//         //       li.className='visual'
-//         //     },2)
-// }
