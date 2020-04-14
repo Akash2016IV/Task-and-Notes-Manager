@@ -83,6 +83,35 @@ async function getAllTasksNotes(taskId) {
             notesList.appendChild(data)
         })
     })
+    let divElement = document.createElement('div')
+    divElement.setAttribute('id',`${taskId}div`)
+    let noteData = document.createElement('input')
+    noteData.setAttribute('type','text')
+    noteData.setAttribute('id',`${taskId}noteData`)
+    let add = document.createElement('input')
+    add.setAttribute('type','button')
+    add.setAttribute('value','Add New Note')
+    add.setAttribute('onclick',`AddNewNoteToTask(${taskId})`)
+    divElement.appendChild(noteData)
+    divElement.appendChild(add)
+    notesList.appendChild(divElement)
+}
+
+function AddNewNoteToTask(taskId){
+    let noteData = document.getElementById(`${taskId}noteData`)
+    addNewNoteToTaskDb(taskId,noteData.value).then(()=>{
+        getAllTasksNotes(taskId)
+    })
+}
+
+async function addNewNoteToTaskDb(taskId,noteData) {
+    const resp = await fetch(`/tasks/${taskId}/notes`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text : noteData })
+    })
 }
 
 function updateTaskDetail(taskId){
@@ -95,8 +124,6 @@ async function getTaskWithId(taskId) {
        console.log(taskData)
     })
 }
-
-
 
 function dueDateSetter() {
     const today = new Date()
