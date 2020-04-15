@@ -38,7 +38,7 @@ function updateTask() {
         priorityTask = 1
     }
     updateTaskDetails(task.taskId,dueDate.value,statusTask,priorityTask).then(()=>{
-        location.replace("index.html")
+        location.href="index.html"
     })
 }
 

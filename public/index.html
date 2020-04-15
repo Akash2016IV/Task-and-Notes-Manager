@@ -4,74 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <title>Task notes Manager</title>
 </head>
 
 <body>
-    <h1>Task Notes Manager</h1>
+    <h1 class="text-center">Task Notes Manager</h1>
     <div class="container">
-    <form>
-        <div class="form-group row">
-            <label for="title" class="col-sm-2 col-form-label">Title* :</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="title" required placeholder="Title">
+        <form>
+            <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label font-weight-bold">Title* :</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="title" required placeholder="Title">
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="description" class="col-sm-2 col-form-label">Description :</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="description" placeholder="Description">
+            <div class="form-group row">
+                <label for="description" class="col-sm-2 col-form-label font-weight-bold">Description :</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="description" placeholder="Description">
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="dueDate" class="col-sm-2 col-form-label">Due Date* :</label>
-            <div class="col-sm-8">
-                <input type="date" class="form-control" id="dueDate" required placeholder="Due Date">
+            <div class="form-group row">
+                <label for="dueDate" class="col-sm-2 col-form-label font-weight-bold">Due Date* :</label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" id="dueDate" required placeholder="Due Date">
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="status" class="col-sm-2 col-form-label">Status :</label>
-            <div class="col-sm-8">
-                <select id="status" class="form-control">
-                    <option value="incomplete" selected>Incomplete</option>
-                    <option value="complete">Complete</option>
-                </select>
+            <div class="form-group row">
+                <label for="status" class="col-sm-2 col-form-label font-weight-bold">Status :</label>
+                <div class="col-sm-8">
+                    <select id="status" class="form-control">
+                        <option value="incomplete" selected>Incomplete</option>
+                        <option value="complete">Complete</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="priority" class="col-sm-2 col-form-label">Priority :</label>
-            <div class="col-sm-8">
-                <select id="priority" class="form-control">
-                    <option value="low">Low</option>
-                    <option value="medium" selected>Medium</option>
-                    <option value="high" >High</option>
-                </select>
+            <div class="form-group row">
+                <label for="priority" class="col-sm-2 col-form-label font-weight-bold">Priority :</label>
+                <div class="col-sm-8">
+                    <select id="priority" class="form-control">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <button type="submit" class="btn btn-primary" id="submit">Add Task</button>
-        </div>
-        
+            <div class="form-group row">
+                <button type="submit" class="btn btn-primary" id="submit">Add Task</button>
+            </div>
     </div>
-        <div class = "container">
-            <select id="filterTask">
+    </form>
+
+    <div class="form-row align-items-center container ml-1">
+        <div class="col-sm-3 my-1">
+            <select id="filterTask" class="form-control">
                 <option value="" selected disabled hidden>SELECT FILTER TYPE</option>
                 <option value="ascending">Due Date(Ascending)</option>
                 <option value="descending">Due Date(Descending)</option>
                 <option value="priority">Priority</option>
                 <option value="status">Status</option>
             </select>
-            <button id = "filter">Filter Task Details</button>
         </div>
+        <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary" id="filter">Filter Task Details</button>
+        </div>
+    </div>
 
-        <div class="container" id="taskList">
-        <div class="row border">
+    <div class="card text-white bg-secondary mb-3" style="max-width: 70rem; margin-left: 80px;">
+        <div class="card-body" id="taskList">
+            
+            <div class="row ">
                 <div class="col-sm border-right">
-                    title
+                   <h5>title</h5>
                 </div>
                 <div class="col-sm border-right">
                     description
@@ -86,11 +98,56 @@
                     priority
                 </div>
                 <div class="col-sm">
-                    <input class="btn-block" type="button" value="Update" id="update">
+                    <input class="btn btn-primary" type="button" value="Update" id="update">
+                </div>
+            </div><br>
+
+            <div class="row ">
+                <div class="col-sm border-right">
+                    <h5>title</h5>
+                 </div>
+                <div class="col-sm border-right">
+                    description
+                </div>
+                <div class="col-sm border-right">
+                    due
+                </div>
+                <div class="col-sm border-right">
+                    status
+                </div>
+                <div class="col-sm border-right">
+                    priority
+                </div>
+                <div class="col-sm">
+                    <input class="btn btn-primary" type="button" value="Update" id="update">
                 </div>
             </div>
         </div>
-    </form>>
+      </div>
+    
+
+    <!-- <div class="container" id="taskList">
+        <div class="row border">
+            <div class="col-sm border-right">
+                title
+            </div>
+            <div class="col-sm border-right">
+                description
+            </div>
+            <div class="col-sm border-right">
+                due
+            </div>
+            <div class="col-sm border-right">
+                status
+            </div>
+            <div class="col-sm border-right">
+                priority
+            </div>
+            <div class="col-sm">
+                <input class="btn-block" type="button" value="Update" id="update">
+            </div>
+        </div>
+    </div> -->
 
     <script src="task_script.js"></script>
 </body>

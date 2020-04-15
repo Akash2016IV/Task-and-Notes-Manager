@@ -33,14 +33,21 @@ async function getAllTasks() {
             case 'status':
                 taskData.sort((a, b) => Number(a.status)-Number(b.status))
                 break
+            default:
+                break
         }
         taskData.forEach(element => {
             taskList.append(addTaskToPage(element))
         })
     })
+    filterTask.value=''
 }
 
+
 function addTask() {
+    if(title.value === ''){
+        return false
+    }
     let statusTask = false
     if (status.value === 'complete') {
         statusTask = true
@@ -81,20 +88,38 @@ function addTaskToPage(task) {
     } else if (task.priority === 1) {
         priorityTask = 'low'
     }
+    // return $(`
+    // <div>      
+    //     <div class="row border" id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
+    //         <div class="col-sm border-right"> ${task.title}</div>
+    //         <div class="col-sm border-right">${task.description}</div>
+    //         <div class="col-sm border-right">${task.due}</div>
+    //         <div class="col-sm border-right">${status}</div>
+    //         <div class="col-sm border-right">${priorityTask}</div>
+    //         <div class="col-sm">
+    //             <input class="btn-block" type="button" value="Update" id="update" onclick = "updateTaskDetail(${task.taskId})" >
+    //         </div>
+    //     </div>
+    //     <div id="${task.taskId}notesList">
+    // </div>
+    // <br>`
+    // )
     return $(`
-    <div>      
-      <div class="row border" id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
-            <div class="col-sm border-right"> ${task.title}</div>
-            <div class="col-sm border-right">${task.description}</div>
-            <div class="col-sm border-right">${task.due}</div>
-            <div class="col-sm border-right">${status}</div>
-            <div class="col-sm border-right">${priorityTask}</div>
-            <div class="col-sm">
-                <input class="btn-block" type="button" value="Update" id="update" onclick = "updateTaskDetail(${task.taskId})" >
+            <div class="row" id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
+                <div class="col-sm border-right">
+                   <h5>${task.title}</h5>
+                </div>
+                <div class="col-sm border-right"> ${task.description}</div>
+                <div class="col-sm border-right"> ${task.due}</div>
+                <div class="col-sm border-right"> ${status}</div>
+                <div class="col-sm border-right"> ${priorityTask}</div>
+                <div class="col-sm">
+                    <input class="btn btn-primary" type="button" value="Update" id="update" onclick = "updateTaskDetail(${task.taskId})">
+                </div>
+            </div><br>
+            <div id="${task.taskId}notesList">
             </div>
-        </div>
-        <div id="${task.taskId}notesList">
-        </div>
+            <hr>
         <br>`
     )
 }
@@ -144,7 +169,7 @@ async function addNewNoteToTaskDb(taskId, noteData) {
 function updateTaskDetail(taskId) {
     getTaskWithId(taskId).then((task) => {
         sessionStorage.setItem('task', JSON.stringify(task))
-        location.replace("taskUpdate.html")
+        location.href="taskUpdate.html"
     })
 
 }
