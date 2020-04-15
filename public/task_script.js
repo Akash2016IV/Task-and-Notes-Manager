@@ -103,24 +103,39 @@ function addTaskToPage(task) {
     // </div>
     // <br>`
     // )
+    // return $(`
+    //         <div class="row" id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
+    //             <div class="col-sm border-right">
+    //                <h5>${task.title}</h5>
+    //             </div>
+    //             <div class="col-sm border-right"> ${task.description}</div>
+    //             <div class="col-sm border-right"> ${task.due}</div>
+    //             <div class="col-sm border-right"> ${status}</div>
+    //             <div class="col-sm border-right"> ${priorityTask}</div>
+    //             <div class="col-sm">
+    //                 <input class="btn btn-primary" type="button" value="Update" id="update" onclick = "updateTaskDetail(${task.taskId})">
+    //             </div>
+    //         </div><br>
+    //         <div id="${task.taskId}notesList">
+    //         </div>
+    //         <hr>
+    //     <br>`
+    // )
+
     return $(`
-            <div class="row" id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
-                <div class="col-sm border-right">
-                   <h5>${task.title}</h5>
-                </div>
-                <div class="col-sm border-right"> ${task.description}</div>
-                <div class="col-sm border-right"> ${task.due}</div>
-                <div class="col-sm border-right"> ${status}</div>
-                <div class="col-sm border-right"> ${priorityTask}</div>
-                <div class="col-sm">
-                    <input class="btn btn-primary" type="button" value="Update" id="update" onclick = "updateTaskDetail(${task.taskId})">
-                </div>
-            </div><br>
-            <div id="${task.taskId}notesList">
-            </div>
-            <hr>
-        <br>`
-    )
+                <tr id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
+                    <td>${task.title}</td>
+                    <td>${task.description}</td>
+                    <td>${task.due}</td>
+                    <td>${status}</td>
+                    <td>${priorityTask}</td>
+                    <td><input class="btn btn-primary" type="button" value="Update" id="update" onclick = "updateTaskDetail(${task.taskId})">
+                    </td>
+                </tr>
+                <tr id="${task.taskId}notesList">
+    //         </tr>
+            `)
+
 }
 
 async function getAllTasksNotes(taskId) {
