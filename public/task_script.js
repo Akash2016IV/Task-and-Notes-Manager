@@ -40,7 +40,6 @@ async function getAllTasks() {
             taskList.append(addTaskToPage(element))
         })
     })
-    filterTask.value=''
 }
 
 
