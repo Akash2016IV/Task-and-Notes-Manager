@@ -13,11 +13,17 @@ window.onload = function () {
     if (task.status === true) {
         statusTask = 'complete'
     }
+    let priorityTask = 'medium'
+    if(task.priority === 3){
+        priorityTask = 'high'
+    } else if(task.priority === 1){
+        priorityTask = 'low'
+    }
     title.value = task.title
     description.value = task.description
     dueDate.value = task.due
     status.value = statusTask
-    priority.value = task.priority
+    priority.value = priorityTask
 }
 
 function updateTask() {
@@ -25,7 +31,13 @@ function updateTask() {
     if (status.value === 'complete') {
         statusTask = true
     }
-    updateTaskDetails(task.taskId,dueDate.value,statusTask,priority.value).then(()=>{
+    let priorityTask = 2
+    if(priority.value === 'high'){
+        priorityTask = 3
+    } else if(priority.value === 'low'){
+        priorityTask = 1
+    }
+    updateTaskDetails(task.taskId,dueDate.value,statusTask,priorityTask).then(()=>{
         location.replace("index.html")
     })
 }

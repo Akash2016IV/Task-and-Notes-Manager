@@ -13,53 +13,61 @@
 
 <body>
     <h1>Task Notes Manager</h1>
-    <div class="form">
-        <div class="form-element">
-            <label>Title* :</label>
-            <input type="text" id="title" required placeholder="Title"><br><br>
-
-            <label>Description :</label>
-            <input type="text" id="description" placeholder="Description"><br><br>
-
-            <label>Due Date* :</label>
-            <input type="date" id="dueDate" required placeholder="Due Date"><br><br>
-
-            <label>Status :</label>
-            <select id="status">
-                <option value="incomplete" selected>Incomplete</option>
-                <option value="complete">Complete</option>
-            </select><br><br>
-
-            <label>Priority :</label>
-            <select id="priority">
-                <option value="low">Low</option>
-                <option value="medium" selected>Medium</option>
-                <option value="high" >High</option>
-            </select><br><br>
-
-            <input type="submit" value="Submit" id="submit">
+    <div class="container">
+    <form>
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label">Title* :</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="title" required placeholder="Title">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">Description :</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="description" placeholder="Description">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="dueDate" class="col-sm-2 col-form-label">Due Date* :</label>
+            <div class="col-sm-8">
+                <input type="date" class="form-control" id="dueDate" required placeholder="Due Date">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="status" class="col-sm-2 col-form-label">Status :</label>
+            <div class="col-sm-8">
+                <select id="status" class="form-control">
+                    <option value="incomplete" selected>Incomplete</option>
+                    <option value="complete">Complete</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="priority" class="col-sm-2 col-form-label">Priority :</label>
+            <div class="col-sm-8">
+                <select id="priority" class="form-control">
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high" >High</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <button type="submit" class="btn btn-primary" id="submit">Add Task</button>
         </div>
         
-        <div class="row border container">
-            <div class="col-sm border-right">
-                title
-            </div>
-            <div class="col-sm border-right">
-                description
-            </div>
-            <div class="col-sm border-right">
-                due
-            </div>
-            <div class="col-sm border-right">
-                status
-            </div>
-            <div class="col-sm border-right">
-                priority
-            </div>
-            <div class="col-sm">
-                <input class="btn-block" type="button" value="Update" id="update">
-            </div>
+    </div>
+        <div class = "container">
+            <select id="filterTask">
+                <option value="" selected disabled hidden>SELECT FILTER TYPE</option>
+                <option value="ascending">Due Date(Ascending)</option>
+                <option value="descending">Due Date(Descending)</option>
+                <option value="priority">Priority</option>
+                <option value="status">Status</option>
+            </select>
+            <button id = "filter">Filter Task Details</button>
         </div>
+
         <div class="container" id="taskList">
         <div class="row border">
                 <div class="col-sm border-right">
@@ -82,7 +90,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </form>>
 
     <script src="task_script.js"></script>
 </body>

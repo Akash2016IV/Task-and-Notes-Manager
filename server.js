@@ -12,7 +12,7 @@ app.use('/tasks', taskRoute)
 
 Tasks.hasMany(Notes, { as: 'All_Notes', foreignKey: 'taskId' })
 
-db.sync()
+db.sync({force : true})
   .then(() => {
     app.listen(6543)
   })
