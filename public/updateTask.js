@@ -9,9 +9,8 @@ let update = document.getElementById('update')
 update.addEventListener('click', updateTask)
 
 window.onload = function () {
-    let statusTask = 'incomplete'
     if (task.status === true) {
-        statusTask = 'complete'
+        status.checked = true
     }
     let priorityTask = 'medium'
     if(task.priority === 3){
@@ -22,13 +21,12 @@ window.onload = function () {
     title.value = task.title
     description.value = task.description
     dueDate.value = task.due
-    status.value = statusTask
     priority.value = priorityTask
 }
 
 function updateTask() {
     let statusTask = false
-    if (status.value === 'complete') {
+    if (status.checked) {
         statusTask = true
     }
     let priorityTask = 2

@@ -123,7 +123,7 @@ function addTaskToPage(task) {
     // )
 
     return $(`
-                <tr id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
+                <tr id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})" ondblclick="getAllTasks()">
                     <td>${task.title}</td>
                     <td>${task.description}</td>
                     <td>${task.due}</td>
@@ -145,18 +145,23 @@ async function getAllTasksNotes(taskId) {
     await resp.json().then(taskData => {
         taskData.All_Notes.forEach(note => {
             let data = document.createElement('li')
+            data.setAttribute('class','notesListTag')
             data.innerText = note.text
             notesList.appendChild(data)
         })
     })
     let divElement = document.createElement('div')
     divElement.setAttribute('id', `${taskId}div`)
+    divElement.setAttribute('class','form-row align-items-center row noteDiv')
+    divElement.setAttribute('style','margin-top: 4px;')
     let noteData = document.createElement('input')
     noteData.setAttribute('type', 'text')
     noteData.setAttribute('id', `${taskId}noteData`)
+    noteData.setAttribute('class','form-control col-sm-8')
     let add = document.createElement('input')
     add.setAttribute('type', 'button')
     add.setAttribute('value', 'Add New Note')
+    add.setAttribute('class','btn btn-primary col-sm-4')
     add.setAttribute('onclick', `AddNewNoteToTask(${taskId})`)
     divElement.appendChild(noteData)
     divElement.appendChild(add)
@@ -183,7 +188,7 @@ async function addNewNoteToTaskDb(taskId, noteData) {
 function updateTaskDetail(taskId) {
     getTaskWithId(taskId).then((task) => {
         sessionStorage.setItem('task', JSON.stringify(task))
-        location.href="taskUpdate.html"
+        location.href="updateTask.html"
     })
 
 }
