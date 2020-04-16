@@ -87,40 +87,6 @@ function addTaskToPage(task) {
     } else if (task.priority === 1) {
         priorityTask = 'low'
     }
-    // return $(`
-    // <div>      
-    //     <div class="row border" id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
-    //         <div class="col-sm border-right"> ${task.title}</div>
-    //         <div class="col-sm border-right">${task.description}</div>
-    //         <div class="col-sm border-right">${task.due}</div>
-    //         <div class="col-sm border-right">${status}</div>
-    //         <div class="col-sm border-right">${priorityTask}</div>
-    //         <div class="col-sm">
-    //             <input class="btn-block" type="button" value="Update" id="update" onclick = "updateTaskDetail(${task.taskId})" >
-    //         </div>
-    //     </div>
-    //     <div id="${task.taskId}notesList">
-    // </div>
-    // <br>`
-    // )
-    // return $(`
-    //         <div class="row" id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})">
-    //             <div class="col-sm border-right">
-    //                <h5>${task.title}</h5>
-    //             </div>
-    //             <div class="col-sm border-right"> ${task.description}</div>
-    //             <div class="col-sm border-right"> ${task.due}</div>
-    //             <div class="col-sm border-right"> ${status}</div>
-    //             <div class="col-sm border-right"> ${priorityTask}</div>
-    //             <div class="col-sm">
-    //                 <input class="btn btn-primary" type="button" value="Update" id="update" onclick = "updateTaskDetail(${task.taskId})">
-    //             </div>
-    //         </div><br>
-    //         <div id="${task.taskId}notesList">
-    //         </div>
-    //         <hr>
-    //     <br>`
-    // )
 
     return $(`
                 <tr id=${task.taskId} onclick = "getAllTasksNotes(${task.taskId})" ondblclick="getAllTasks()">
@@ -133,9 +99,8 @@ function addTaskToPage(task) {
                     </td>
                 </tr>
                 <tr id="${task.taskId}notesList">
-    //         </tr>
+                </tr>
             `)
-
 }
 
 async function getAllTasksNotes(taskId) {
@@ -170,6 +135,9 @@ async function getAllTasksNotes(taskId) {
 
 function AddNewNoteToTask(taskId) {
     let noteData = document.getElementById(`${taskId}noteData`)
+    if(noteData.value === ''){
+        return false
+    }
     addNewNoteToTaskDb(taskId, noteData.value).then(() => {
         getAllTasksNotes(taskId)
     })

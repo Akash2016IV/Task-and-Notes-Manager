@@ -1,0 +1,9 @@
+To add the new task: Fill the fields displayed on the page (asterisk/* means field is compulsory)
+
+To apply filter on the task list: select one of the option in dropdown
+
+To see the notes or add notes for particular task: click once on row, it expands
+
+To close the expanded list: click twice on the row, it will close
+
+To update the task: click on update button displayed on each row, it will navigate you to update page
