@@ -23,3 +23,12 @@ body{
 .noteDiv{
     margin-left: 15px;
 }
+
+input[type=checkbox]{
+    width:30px;
+    height:30px;
+    margin:5px;
+    border:2px solid #b5c5dd;
+    position:relative;
+    outline:0;
+}
